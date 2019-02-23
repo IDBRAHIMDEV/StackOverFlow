@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\User;
+use App\Http\Requests\AuthRequest;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -14,7 +16,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'signUp']]);
     }
 
     /**
@@ -31,6 +33,17 @@ class AuthController extends Controller
         }
 
         return $this->respondWithToken($token);
+    }
+
+    public function signUp(AuthRequest $request) {
+       
+        User::create([
+            'name' => $request->name,
+            'password' => bcrypt($request->password),
+            'email' => $request->email
+        ]);
+      
+        return response(['message' => 'Account is Created'], 201);
     }
 
     /**
