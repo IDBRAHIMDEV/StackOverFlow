@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Question;
+use App\Http\Resources\QuestionResource;
+use App\Http\Requests\QuestionRequest;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -14,7 +16,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return Question::all();
+        //Appliquer le resource sur un tableau des objets
+        return QuestionResource::collection(Question::all());
     }
 
     
@@ -24,9 +27,17 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuestionRequest $request)
     {
-        //
+        $question = Question::create([
+            'title' => $request->title,
+            'slug'  => str_slug($request->title),
+            'body'  => $request->body,
+            'category_id' => $request->category_id,
+            'user_id' => $request->user_id 
+        ]);
+
+        return response(['data' => $question], 201);
     }
 
     /**
@@ -36,8 +47,9 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Question $question)
-    {
-        return $question;
+    {   
+        //Appliquer le resource sur une seule instance
+        return new QuestionResource($question);
     }
 
     /**
@@ -47,9 +59,17 @@ class QuestionController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(QuestionRequest $request, Question $question)
     {
-        //
+        $question->update([
+            'title' => $request->title,
+            'slug'  => str_slug($request->title),
+            'body'  => $request->body,
+            'category_id' => $request->category_id,
+            'user_id' => $request->user_id 
+        ]);
+
+        return response('updated', 202);
     }
 
     /**
