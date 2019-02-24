@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('{front?}', function($front = null){
-   return view('welcome');
-});
+Route::view('{front?}',  'welcome');
+
+Route::view('question/{slug}', 'welcome');

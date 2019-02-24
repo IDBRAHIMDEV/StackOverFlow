@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
+    protected $with = ['user']; 
     public function likes() {
         return $this->hasMany(Like::class);
     }

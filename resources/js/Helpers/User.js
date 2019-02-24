@@ -7,7 +7,7 @@ class User {
         .then(res => {
             console.log(res.data)
             MyStorage.storeToken(res.data.access_token, res.data.user);
-            window.location = '/forum';
+            window.location = '/';
         })
         .catch(err => console.log('error: ', err))
     }

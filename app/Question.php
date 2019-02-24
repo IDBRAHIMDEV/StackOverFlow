@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     protected $fillable = ['title', 'slug', 'body', 'category_id', 'user_id'];
-    
+
     public function getRouteKeyName() {
         return 'slug';
     }
 
     public function getSlugAttribute($value) {
-       return 'api/question/'.$value;
+       return $value;
     }
     
     public function replies() {
