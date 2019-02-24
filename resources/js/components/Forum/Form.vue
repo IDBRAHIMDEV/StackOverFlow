@@ -10,9 +10,11 @@
                         <h3 class="headline mb-0">
                           <router-link :to="'/question/'+question.path">
                             {{ question.title }}
+                           
                           </router-link>
                         </h3>
                         <div> {{ question.content }} </div>
+                        <div class="my-2">Created by: {{ question.user }}</div>
                     </div>
                     </v-card-title>
 

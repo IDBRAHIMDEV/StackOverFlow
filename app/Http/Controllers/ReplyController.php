@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Reply;
+use App\Reply, App\Question;
 use Illuminate\Http\Request;
 
 class ReplyController extends Controller
@@ -33,9 +33,11 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Question $question)
     {
-        //
+       $reply = $question->replies()->create($request->all());
+       
+       return response(['data' => $reply], 201);
     }
 
     /**

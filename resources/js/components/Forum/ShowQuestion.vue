@@ -36,6 +36,8 @@
           <v-btn flat color="orange">Explore</v-btn>
         </v-card-actions>
       </v-card>
+
+       <new-reply :question="data"></new-reply>
        
     </v-flex>
   </v-layout>
@@ -43,7 +45,9 @@
 </template>
 
 <script>
+import NewReply from './NewReply';
 export default {
+    components: {NewReply},
    data() {
        return {
            data: null,
