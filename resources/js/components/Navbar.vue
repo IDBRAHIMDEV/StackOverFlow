@@ -8,7 +8,10 @@
       <router-link to="/">
         <v-btn flat>Forum</v-btn>
       </router-link>
-      <v-btn flat>Ask Question</v-btn>
+      <router-link to="/question/add">
+         <v-btn flat>Ask Question</v-btn>
+      </router-link>
+      
       <v-btn flat>Category</v-btn>
       <router-link to="/login" v-if="!logged">
         <v-btn flat>Login</v-btn>

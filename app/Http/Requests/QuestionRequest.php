@@ -26,8 +26,7 @@ class QuestionRequest extends FormRequest
         return [
             'title' => 'required',
             'body' => 'required',
-            'category_id' => 'required',
-            'user_id' => 'required',
+            'category_id' => 'required'
         ];
     }
 }

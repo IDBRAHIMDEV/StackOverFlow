@@ -17,7 +17,7 @@ class QuestionController extends Controller
     public function index()
     {
         //Appliquer le resource sur un tableau des objets
-        return QuestionResource::collection(Question::all());
+        return QuestionResource::collection(Question::latest()->get());
     }
 
     

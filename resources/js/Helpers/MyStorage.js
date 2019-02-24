@@ -2,10 +2,11 @@ import Token from "./Token";
 
 class MyStorage {
 
-    storeToken(token, user) {
+    storeToken(token, user_id, user_name) {
        if(Token.isValid(token)) {
            localStorage.setItem('Token', token);
-           localStorage.setItem('user', user);
+           localStorage.setItem('user_id', user_id);
+           localStorage.setItem('user_name', user_name);
        }
     }
 
