@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('{front?}', function($front = null){
+   return view('welcome');
 });
